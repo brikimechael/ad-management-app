@@ -1,0 +1,7 @@
+{
+  "name": "ad-management-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
