@@ -9,7 +9,9 @@ import { SharedService } from './shared.service';
 })
 export class AdService {
   updateAd(ad: Ad):Observable<Ad> {
-    return this.http.put<Ad>(`${this.apiUrl}/${ad.id}`, ad);
+    return this.http.put<Ad>(`${this.apiUrl}/${ad.id}`, ad).pipe(
+      tap(() => this.sharedService.updateAds())
+    );
 
   }
   getAdsByCategory(selectedCategory: AdCategory) {
