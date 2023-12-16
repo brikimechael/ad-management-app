@@ -55,23 +55,22 @@ export class AdsListComponent implements OnInit {
         return '';
     }
   }
-
-  async confirmDelete(ad: Ad): Promise<void> {
-    const confirmed = await this.dialogService.showConfirmDialog('Are you sure you want to delete this ad?');
-    if (confirmed) {
-      this.adService.deleteAd(ad.id).subscribe(
-        () => {
-          console.log('Delete ad:', ad);
-          this.presentSuccessToast('Ad deleted successfully!');
-
-        },
-        (error) => {
-          console.error('Error deleting ad:', error);
-          this.presentFailureToast('Error deleting ad. Please try again.');
-        }
-      );
-    }
+  confirmDelete(ad: Ad): void {
+    this.dialogService.showConfirmDialog('Are you sure you want to delete this ad?').then((confirmed) => {
+        this.adService.deleteAd(ad.id).subscribe(
+          () => {
+            console.log('Ad deleted successfully:', ad);
+            this.presentSuccessToast('Ad deleted successfully!');
+          },
+          (error) => {
+            console.error('Error deleting ad:', error);
+            this.presentFailureToast('Error deleting ad. Please try again.');
+          }
+        );
+    
+    });
   }
+  
 
   navigateToAdDetails(ad: Ad) {
     this.sharedService.setSelectedAd(ad);

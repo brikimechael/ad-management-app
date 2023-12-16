@@ -39,7 +39,7 @@ export class AdService {
   deleteAd(id: number|undefined): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(url).pipe(
-      tap(() => this.sharedService.updateAds()),
+      tap(() => this.sharedService.updateAds())
     );
   }
 }
