@@ -1,0 +1,58 @@
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-select
+        aria-label="Categories"
+        placeholder="Categories"
+        [multiple]="true"
+        [(ngModel)]="selectedCategories"
+        (ionChange)="onCategorySelected()"
+      >
+        <ion-select-option value="VEHICULES">Vehicles</ion-select-option>
+        <ion-select-option value="IMMOBILIER">Real Estate</ion-select-option>
+        <ion-select-option value="INFORMATIQUES_ET_MULTIMEDIA">Electronics</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ng-container *ngIf="ads?.length; else noAds">
+    <ion-row style="display: center; justify-content: center;">
+      <ion-col *ngFor="let ad of ads"  >
+        <ion-card style="width: 250px; height: 250px; position: relative;">
+        
+          <ion-card-content style="text-align: center; position: center;">
+            <ion-icon
+            name="eye-outline"
+            size="medium"
+            style="position: absolute; top: 5px; right: 25px; cursor: pointer;"
+            (click)="navigateToAdDetails(ad)"
+          ></ion-icon>
+          <ion-icon
+            name="trash-outline"
+            size="medium"
+            style="position: absolute; top: 5px; right: 5px; cursor: pointer;"
+            (click)="confirmDelete(ad)"
+          ></ion-icon>
+            <ion-card-title>{{ ad.name }}</ion-card-title>
+            <img [src]="ad.picture || 'assets/no-pictures.png'" alt="Ad Image" class="ad-image">
+            <ion-item>
+              <ion-text style="font-style: italic;">{{ ad.price }} $</ion-text>
+            </ion-item>
+            <ion-img [src]="getCategoryIcon(ad.category)" style="height: 50px; float: right;"></ion-img>
+            <ion-item aria-label="Location">            <ion-icon name="locate-outline"> </ion-icon>
+              <ion-text style="font-style: italic;">{{ ad.location }}</ion-text>
+              </ion-item>
+
+                    </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+
+  <ng-template #noAds>
+    <div class="no-ads-container">
+      <img src="assets/empty.png" alt="No Ads Found">
+      <p>No ads found</p>
+    </div>
+  </ng-template>
+</ion-content>

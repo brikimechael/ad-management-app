@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Ad } from 'src/models/ad.model';
+import { AdService } from 'src/app/service/ad.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,6 +11,5 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
-
+  
 }

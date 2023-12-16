@@ -1,0 +1,64 @@
+<ion-content  [formGroup]="adForm">
+
+      <ion-item>
+        <ion-select formControlName="category" placeholder="Select Category">
+          <ion-select-option *ngFor="let category of adCategories" [value]="category">{{ category }}</ion-select-option>
+          <ion-icon *ngIf="category?.valid" name="checkmark-circle" slot="end" color="success"></ion-icon>
+          <ion-icon *ngIf="!category?.valid && category?.touched" name="close-circle" slot="end" color="danger"></ion-icon>
+        </ion-select>
+        <ion-text color="danger" *ngIf="category?.hasError('required') && category?.touched">
+          Category is required
+        </ion-text>
+      </ion-item>
+      
+      <ion-item>
+        <ion-input label="Name" formControlName="name"></ion-input>
+        <ion-icon *ngIf="name?.valid" name="checkmark-circle" slot="end" color="success"></ion-icon>
+        <ion-icon *ngIf="!name?.valid && name?.touched" name="close-circle" slot="end" color="danger"></ion-icon>
+        <ion-text color="danger" *ngIf="name?.hasError('required') && name?.touched">
+          Name is required
+        </ion-text>
+      </ion-item>
+      
+      <ion-item>
+        <ion-input label="Price" type="number" formControlName="price"></ion-input>
+        <ion-icon *ngIf="price?.valid" name="checkmark-circle" slot="end" color="success"></ion-icon>
+        <ion-icon *ngIf="!price?.valid && price?.touched" name="close-circle" slot="end" color="danger"></ion-icon>
+        <ion-text color="danger" *ngIf="(price?.hasError('required') || price?.hasError('min')) && price?.touched">
+          Price is required
+        </ion-text>
+      </ion-item>
+  
+      <ion-item>
+        <ion-input label="Location" formControlName="location"></ion-input>
+        <ion-icon *ngIf="location?.valid" name="checkmark-circle" slot="end" color="success"></ion-icon>
+        <ion-icon *ngIf="!location?.valid && location?.touched" name="close-circle" slot="end" color="danger"></ion-icon>
+        <ion-text color="danger" *ngIf="location?.hasError('required') && location?.touched">
+          Location is required
+        </ion-text>
+      </ion-item>
+  
+      <ion-item>
+        <ion-input label="Phone Number" formControlName="phoneNumber" type="number"></ion-input>
+        <ion-icon *ngIf="phoneNumber?.valid" name="checkmark-circle" slot="end" color="success"></ion-icon>
+        <ion-icon *ngIf="!phoneNumber?.valid && phoneNumber?.touched" name="close-circle" slot="end" color="danger"></ion-icon>
+        <ion-text color="danger" *ngIf="(phoneNumber?.hasError('required') || phoneNumber?.hasError('pattern')) && phoneNumber?.touched">
+          Please enter a valid phone number (8 digits)
+        </ion-text>
+      </ion-item>
+  
+      <ion-item>
+        <ion-textarea label="Description" formControlName="description" rows="4"></ion-textarea>
+        <ion-icon *ngIf="description?.valid" name="checkmark-circle" slot="end" color="success"></ion-icon>
+        <ion-icon *ngIf="!description?.valid && description?.touched" name="close-circle" slot="end" color="danger"></ion-icon>
+      </ion-item>
+  
+      <ion-item >
+        <ion-text>Still Available</ion-text>
+        <ion-toggle formControlName="stillAvailable" color="primary" style="margin-bottom: 2%;"></ion-toggle>
+      </ion-item>
+  
+      <ion-button (click)="updateAd()" style="display:flex;" type="submit" color="medium">Update</ion-button>
+
+
+</ion-content>

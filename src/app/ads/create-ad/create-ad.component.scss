@@ -1,0 +1,13 @@
+.valid-input {
+    --highlight-color: #4caf50; 
+    --highlight-border-color: #4caf50; 
+  
+    ion-label {
+      color: var(--highlight-color);
+    }
+  
+    ion-input {
+      border-color: var(--highlight-border-color);
+    }
+  }
+  
