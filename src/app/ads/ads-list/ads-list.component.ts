@@ -57,6 +57,8 @@ export class AdsListComponent implements OnInit {
   }
   confirmDelete(ad: Ad): void {
     this.dialogService.showConfirmDialog('Are you sure you want to delete this ad?').then((confirmed) => {
+      console.log(confirmed)
+      if(confirmed){
         this.adService.deleteAd(ad.id).subscribe(
           () => {
             console.log('Ad deleted successfully:', ad);
@@ -67,7 +69,7 @@ export class AdsListComponent implements OnInit {
             this.presentFailureToast('Error deleting ad. Please try again.');
           }
         );
-    
+        }
     });
   }
   

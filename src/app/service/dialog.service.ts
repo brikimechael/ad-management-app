@@ -22,6 +22,8 @@ export class DialogService {
         },
         {
           text: 'Delete',
+          role: 'delete',
+
           handler: () => {
             return true;
           },
